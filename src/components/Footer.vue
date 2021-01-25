@@ -1,5 +1,5 @@
 <template>
-  <div class="p-4 mt-64">
+  <div class="p-4">
     <p class="">© 2021 Webfaster</p>
   </div>
 </template>

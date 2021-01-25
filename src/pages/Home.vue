@@ -24,7 +24,7 @@
       <!--RIGHT COL--> 
       <div class="w-3/4">
         <div class="grid grid-cols-3 mt-10 mx-12">
-          <router-link :to="`/widget/${widget._id}`" v-for="widget in widgets" v-bind:key="widget.name"
+          <router-link :to="`/widget/${widget._id}`" v-for="widget in widgets" v-bind:key="widget._id"
             class="border rounded-xl m-4 flex flex-col text-center hover:shadow-2xl cursor-pointer">
             <div class="border-b rounded-t-xl py-4 w-full flex justify-center">
               <img class="w-32 h-32" :src="widget.icon"/>
@@ -36,7 +36,7 @@
           </router-link>
         </div>
         <!--FOOTER-->
-        <Footer class="border-t border-black"/>
+        <Footer class="border-t mt-64 border-black"/>
       </div>
     </section>
   
@@ -47,6 +47,9 @@
 import Sidenav from '../components/Sidenav';
 import Footer from '../components/Footer';
 
+import env from '../../env';
+import api from '../helpers/api';
+
 export default {
   components: {
     Sidenav,
@@ -54,40 +57,11 @@ export default {
   },
   data() {
     return {
-      widgets: [
-        {
-          _id: '0',
-          name: 'blendr.io',
-          icon: 'https://media-exp1.licdn.com/dms/image/C4D0BAQE7MzeBI60oWw/company-logo_200_200/0?e=2159024400&v=beta&t=CbALwPayFNnEt819BJ__P-CZj8rt46RuZziMmUFpAKI',
-          tagline: 'Data integration and cloud automation',
-        },
-        {
-          _id: '0',
-          name: 'blendr.io',
-          icon: 'https://media-exp1.licdn.com/dms/image/C4D0BAQE7MzeBI60oWw/company-logo_200_200/0?e=2159024400&v=beta&t=CbALwPayFNnEt819BJ__P-CZj8rt46RuZziMmUFpAKI',
-          tagline: 'Data integration and cloud automation',
-        },
-        {
-          _id: '0',
-          name: 'blendr.io',
-          icon: 'https://media-exp1.licdn.com/dms/image/C4D0BAQE7MzeBI60oWw/company-logo_200_200/0?e=2159024400&v=beta&t=CbALwPayFNnEt819BJ__P-CZj8rt46RuZziMmUFpAKI',
-          tagline: 'Data integration and cloud automation',
-        },
-        {
-          _id: '0',
-          name: 'blendr.io',
-          icon: 'https://media-exp1.licdn.com/dms/image/C4D0BAQE7MzeBI60oWw/company-logo_200_200/0?e=2159024400&v=beta&t=CbALwPayFNnEt819BJ__P-CZj8rt46RuZziMmUFpAKI',
-          tagline: 'Data integration and cloud automation',
-        },
-        {
-          _id: '0',
-          name: 'blendr.io',
-          icon: 'https://media-exp1.licdn.com/dms/image/C4D0BAQE7MzeBI60oWw/company-logo_200_200/0?e=2159024400&v=beta&t=CbALwPayFNnEt819BJ__P-CZj8rt46RuZziMmUFpAKI',
-          tagline: 'Data integration and cloud automation',
-        },
-
-      ],
+      widgets: [],
     };
+  },
+  async mounted() {
+    this.widgets = await api.get(`${env.apiURL}/widgets`);
   },
 }
 </script>

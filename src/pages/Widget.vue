@@ -44,6 +44,9 @@ import Footer from '../components/Footer';
 
 import { Remarkable } from 'remarkable';
 
+import env from '../../env';
+import api from '../helpers/api';
+
 export default {
   components: {
     Sidenav,
@@ -51,32 +54,13 @@ export default {
   },
   data() {
     return {
-      widget: {
-        name: 'blendr.io',
-        icon:'https://marketplace-static.teamleader.eu/icons/446638a8-bf79-49ea-a34f-28e2242c66c6.png?v=1519738583',
-        tagline: 'Data integration and cloud automation',
-        description: `Blendr.io is a data integration and cloud automation platform. Create "Data Blends" to connect your sales & marketing cloud tools, for example, to orchestrate customer journeys, to perform data enrichment or to centrally manage your data for compliance with GDPR.
-
-Advantages of using Blendr.io
-
-- Integrate +100 marketing and sales tools with Teamleader, including marketing automation applications, social media accounts, mailing tools, project management, e-commerce platforms, helpdesks and more. For example, Marketo, Clearbit, Gravity Forms, Hubspot, My SQL and many more.
-- Automate all your data flows across multiple tools.
-- Sync, combine and enrich your data.
-
-Advantages of the integration:
-
-- Create Data Blends to enrich your leads' and customers' data in Teamleader by connecting them with data enrichment applications.
-- Automate any of your data flows, e.g. send data from your website sign up forms directly to Teamleader.
-- Easily sync and combine your Teamleader data with data on your other sales and marketing applications.
-- Create dashboards to access your customer information across all applications.
-- Generate more leads by, e.g. connecting your Teamleader account to Facebook Ads and automatically creating lookalike campaigns to target people similar to your existing customers.
-        `,
-      },
+      widget: {},
     };
   },
-  mounted() {
+  async mounted() {
+    this.widget = await api.get(`${env.apiURL}/widgets/${this.$route.params.widgetId}`);
     const md = new Remarkable();
-  document.getElementById('description').innerHTML = md.render(this.widget.description);
+    document.getElementById('description').innerHTML = md.render(this.widget.description);
   }
 }
 </script>
