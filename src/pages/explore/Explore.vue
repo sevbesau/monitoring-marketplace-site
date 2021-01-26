@@ -24,7 +24,7 @@
       <!--RIGHT COL--> 
       <div class="w-3/4">
         <div class="grid grid-cols-3 mt-10 mx-12">
-          <router-link :to="`/widget/${widget._id}`" v-for="widget in widgets" v-bind:key="widget._id"
+          <router-link :to="`/explore/${widget._id}`" v-for="widget in widgets" v-bind:key="widget._id"
             class="border rounded-xl m-4 flex flex-col text-center hover:shadow-2xl cursor-pointer">
             <div class="border-b rounded-t-xl py-4 w-full flex justify-center">
               <img class="w-32 h-32" :src="widget.icon"/>
@@ -44,11 +44,11 @@
 </template>
 
 <script>
-import Sidenav from '../components/Sidenav';
-import Footer from '../components/Footer';
+import Sidenav from '../../components/Sidenav';
+import Footer from '../../components/Footer';
 
-import env from '../../env';
-import api from '../helpers/api';
+import env from '../../../env';
+import api from '../../helpers/api';
 
 export default {
   components: {

@@ -3,8 +3,8 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter);
 
-import Home from '../pages/Home'
-import Widget from '../pages/Widget'
+import Explore from '../pages/explore/Explore'
+import Widget from '../pages/explore/Widget'
 
 import Build from '../pages/build/Build'
 import MyWidgets from '../pages/build/Widgets'
@@ -20,8 +20,9 @@ window.routes = [
   { path: '/signup', name: 'signup', component: Signup },
   { path: '/invite/:id', name: 'invite', component: Invite },
   
-  { path: '/', name: 'Home', component: Home },
-  { path: '/widget/:widgetId', name: 'Widget', component: Widget },
+  { path: '/', name: 'Explore', component: Explore },
+  { path: '/explore', name: 'Explore', component: Explore },
+  { path: '/explore/:widgetId', name: 'Widget', component: Widget },
 
   { path: '/build', name: 'Build', component: Build },
   { path: '/build/widgets', name: 'MyWidgets', component: MyWidgets },

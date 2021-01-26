@@ -21,13 +21,16 @@
             <router-link to="/build/create" class="p-3 mt-4 mb-64 bg-white text-black rounded">CREATE WIDGET</router-link>
           </div>
           <div v-else class="flex flex-col w-full">
-            <div v-for="widget in widgets" v-bind:key="widget._id" class="flex w-full justify-between items-center text-left max-w-5xl p-4 border-white border rounded-t-lg">
+            <router-link :to="'/build/widget/'+widget._id" v-for="widget in widgets" v-bind:key="widget._id" class="flex w-full justify-between items-center text-left max-w-5xl p-4 border-white border rounded-t-lg">
               <div class="flex">
                 <img class="border-white rounded-lg border w-16 h-16 mr-8" :src="widget.icon" alt="">
-                <p class="font-bold">{{widget.name}}</p>
+                <div class="flex flex-col">
+                  <p class="font-bold text-2xl">{{widget.name}}</p>
+                  <p class="text-xl">{{widget.tagline}}</p>
+                </div>
               </div>
-              <router-link :to="'/build/widget/'+widget._id">manage</router-link>
-            </div>
+              <p class="font-semibold">manage</p>
+            </router-link>
             <div class="flex flex-col w-full justify-between items-center text-left max-w-5xl p-4 bg-gray-600 border-white border-b border-r border-l rounded-b-lg">
               <p class="font-bold text-2xl">Building a new widget?</p>
               <p class="opacity-80">Register your new widget</p>

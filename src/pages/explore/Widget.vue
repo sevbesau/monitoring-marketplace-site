@@ -25,9 +25,9 @@
             <img class="w-full rounded-md" :src="widget.icon" alt="">
             <button class="w-full mt-6 py-2 px-4 bg-green-600 rounded-md">ADD</button>
             <p class="border-t border-black mt-8 pt-8 text-lg opacity-80">Developer</p>
-            <router-link to="http://webfaster.com" class=" text-blue-400 text-xl">Webfaster</router-link>
+            <p class="cursor-pointer text-blue-400 text-xl">{{widget.author.firstname}} {{widget.author.lastname}}</p>
           </div>
-          <div class="px-16" id="description"></div>
+          <div class="px-16" id="description">{{widget.description}}</div>
           <div class=""></div>
         </div>
         <!--FOOTER-->
@@ -39,13 +39,11 @@
 </template>
 
 <script>
-import Sidenav from '../components/Sidenav';
-import Footer from '../components/Footer';
+import Sidenav from '../../components/Sidenav';
+import Footer from '../../components/Footer';
 
-import { Remarkable } from 'remarkable';
-
-import env from '../../env';
-import api from '../helpers/api';
+import env from '../../../env';
+import api from '../../helpers/api';
 
 export default {
   components: {
@@ -59,8 +57,6 @@ export default {
   },
   async mounted() {
     this.widget = await api.get(`${env.apiURL}/widgets/${this.$route.params.widgetId}`);
-    const md = new Remarkable();
-    document.getElementById('description').innerHTML = md.render(this.widget.description);
   }
 }
 </script>

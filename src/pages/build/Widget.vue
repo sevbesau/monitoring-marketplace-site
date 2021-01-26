@@ -19,7 +19,7 @@
             <p class="text-xl font-semibold">General information</p>
             <p class="text-xl opacity-80">Let's start with the basics</p>
             <div class="flex w-full justify-between">
-              <div class="mt-3 w-full mr-16 flex flex-col">
+              <div class="mt-3 w-9/12 flex flex-col">
                 <div>
                   <label class="text-xl opacity-80 mb-1" for="name">Name of the widget</label>
                   <input class="rounded p-2 w-full text-black" type="text" id="name" v-model="widget.name">
@@ -31,7 +31,7 @@
                   <p class="mt-1 opacity-80">This will be the slogan displayed on the Marketplace.</p>
                 </div>
               </div>
-              <div class="mt-3 flex flex-col">
+              <div class="">
                 <img @click="$refs.picture.click()" class="border-white border rounded-lg h-48 w-48 cursor-pointer" :src="widget.icon" alt="+">
                 <input ref="picture" @change="uploadPicture" type="file" style="display: none;">
               </div>
@@ -60,7 +60,10 @@
               <p class="mt-1 opacity-80">The key we should look for in the api response to parse data from</p>
             </div>
 
-            <button @click="save()" class="py-2 px-4 mt-24 rounded bg-white text-black">UPDATE WIDGET</button>
+            <div class="flex">
+              <button @click="save()" class="py-2 px-4 mt-24 rounded bg-white text-black">UPDATE WIDGET</button>
+              <button class="py-2 px-4 ml-8 mt-24 rounded border border-white">SUBMIT WIDGET FOR REVIEW</button>
+            </div>
           </div>
         </div>
         <!--FOOTER-->
@@ -100,6 +103,7 @@ export default {
     async save() {
       const res = await api.put(`${env.apiURL}/widgets/${this.$route.params.widgetId}`, this.widget);
       console.log(res);
+      this.$forceUpdate();
     },
     uploadPicture: async function (e) {
       let droppedFiles = e.target.files;
@@ -107,8 +111,9 @@ export default {
       if (droppedFiles.length !== 1) return;
       let formData = new FormData();
       formData.append('file', droppedFiles[0]);
-      const res = await api.post(`${env.apiURL}/uploads`, formData)
-      console.log(res);
+      const res = await api.post(`${env.apiURL}/uploads`, formData);
+      this.widget.icon = res.url;
+      await this.save();
     },
   },
   async mounted() {
