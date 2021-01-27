@@ -6,7 +6,7 @@
     </div>
     <p class="text-3xl text-bold mt-6 mb-1">Help</p>
     <div class="flex flex-col opacity-80">
-      <router-link to="">API Documentation</router-link>
+      <a href="https://docs.monitoring.app/">API Documentation</a>
       <router-link to="">Knowledge base</router-link>
       <router-link to="">Contact us</router-link>
     </div>
