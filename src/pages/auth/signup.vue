@@ -45,7 +45,7 @@
 
 <script>
   import auth from '@/helpers/auth';
-  //import * as THREE from 'three';
+  import * as THREE from 'three';
 
   export default {
     name: 'signup',
@@ -98,7 +98,6 @@
           name: "reset_password"
         });
       },
-      /*
       createBackground(){ //star animation
           var camera, scene, renderer, stars = [];
 
@@ -177,7 +176,6 @@
           addSphere();
           render();
       }
-      */
     },
     async mounted() {
 
@@ -188,7 +186,7 @@
         this.$router.push('/');
       }
 
-      //this.createBackground();
+      this.createBackground();
     },
     created() {
       window.addEventListener('keydown', (e) => {

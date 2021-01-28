@@ -31,7 +31,7 @@
           <div class=""></div>
         </div>
         <!--FOOTER-->
-        <Footer class="border-t border-black"/>
+        <Footer class="mt-40 border-t border-black"/>
       </div>
     </section>
   

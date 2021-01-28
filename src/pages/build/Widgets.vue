@@ -21,7 +21,8 @@
             <router-link to="/build/create" class="p-3 mt-4 mb-64 bg-white text-black rounded">CREATE WIDGET</router-link>
           </div>
           <div v-else class="flex flex-col w-full">
-            <router-link :to="'/build/widget/'+widget._id" v-for="widget in widgets" v-bind:key="widget._id" class="flex w-full justify-between items-center text-left max-w-5xl p-4 border-white border rounded-t-lg">
+          <div class="w-full max-w-5xl py-1 border-t border-l border-r border-white rounded-5xl rounded-t-lg"></div>
+            <router-link :to="'/build/widget/'+widget._id" v-for="widget in widgets" v-bind:key="widget._id" class="flex w-full justify-between items-center text-left max-w-5xl p-4 border-white border-l border-r border-b">
               <div class="flex">
                 <img class="border-white rounded-lg border w-16 h-16 mr-8" :src="widget.icon" alt="">
                 <div class="flex flex-col">
